@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Test Netlify</title>
+</head>
+<body>
+  <h1>Probando Netlify Functions</h1>
+  <button onclick="callFunction()">Enviar</button>
+
+  <script>
+    async function callFunction() {
+      try {
+        const response = await fetch('/.netlify/functions/hello', {
+          method: 'POST',
+          body: JSON.stringify({ message: 'Hola desde el botón' })
+        });
+        const result = await response.json();
+        console.log('Respuesta:', result);
+        alert(result.message);
+      } catch (error) {
+        console.error('Error:', error);
+        alert('Hubo un error. Revisá la consola.');
+      }
+    }
+  </script>
+</body>
+</html>
